@@ -1,6 +1,7 @@
 <script>
 export default {
-
+    //props
+    props: ['name', 'type', 'cardImage'],
 }
 </script>
 
@@ -10,18 +11,19 @@ export default {
 
         <!--immagine-->
         <div class="image">
-            dddd
+            <img :src="cardImage" alt="name">
         </div>
+
         <!--/immagine-->
 
         <!--nome-->
-        <div class="name">
-            dddd
-        </div>
+        <h4 class="name">
+            {{ name }}
+        </h4>
         <!--/nome-->
 
         <!--tipo-->
-        <div class="type">ddd</div>
+        <div class="type">{{ type }}</div>
         <!--/tipo-->
 
     </div>
@@ -32,7 +34,23 @@ export default {
 @import "../assets/scss/Utils.scss";
 
 .card {
-    width: calc(100% / 5);
+    width: calc(100% / 5 - 8px);
     background-color: #d48f38;
+
+    img {
+        width: 100%;
+    }
+
+    .name {
+        color: $primary;
+        text-align: center;
+        padding: 1.5625rem 0;
+    }
+
+    .type {
+        text-align: center;
+        font-size: .875rem;
+        padding-bottom: 1.25rem;
+    }
 }
 </style>

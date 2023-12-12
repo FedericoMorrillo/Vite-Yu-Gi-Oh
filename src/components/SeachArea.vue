@@ -8,7 +8,7 @@ export default {
     <nav class="container">
         <!--barra di selezione-->
         <select class="search-bar" id="">
-            <option value="Alien">Alien</option>
+            <option value=""></option>
         </select>
         <!--/barra di selezione-->
     </nav>

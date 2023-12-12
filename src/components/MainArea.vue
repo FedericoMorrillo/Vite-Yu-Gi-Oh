@@ -29,9 +29,11 @@ export default {
         <!--/head con carte trovate-->
 
         <!--contenitore delle cards-->
-        <div class="cardlist flex wrap">
-            <!--passiamo l' array al compomente figlios-->
-            <Cards :cards="store.cards" />
+        <div class="cardlist flex wrap gap">
+            <!--passiamo l' array al compomente figlio assegnando le proprietà per il props-->
+            <Cards v-for="card in store.cards" :name="card.name" :type="card.type"
+                :cardImage="card.card_images[0].image_url" />
+            <!--entriamo nell' array delle immagini e prendiamo l'url in posizione 0-->
         </div>
         <!--/contenitore delle cards-->
     </main>
