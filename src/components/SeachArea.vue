@@ -1,20 +1,18 @@
 <script>
 export default {
-    data() {
-        return {
-            tipo: 'alien',
-        }
-    }
-
 }
 </script>
 
 <template>
+    <!--contenitore-->
     <nav class="container">
-        <select class="search-bar" v-model="tipo" id="">
+        <!--barra di selezione-->
+        <select class="search-bar" id="">
             <option value="Alien">Alien</option>
         </select>
+        <!--/barra di selezione-->
     </nav>
+    <!--/contenitore-->
 </template>
 
 <style scoped lang="scss">
@@ -23,6 +21,7 @@ export default {
 .search-bar {
     width: 9.375rem;
     height: 2.5rem;
-    margin: 1.5625rem 0;
+    margin: 1.5625rem 0 1.5625rem .625rem;
+
 }
 </style>

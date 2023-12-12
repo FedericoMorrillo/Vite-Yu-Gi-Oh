@@ -10,9 +10,12 @@ export default {
             <img src="../assets/logo.jpg" alt="logo">
             <!--/temporanea****-->
         </div>
+
+        <!--titolo-->
         <div class="title">
             Yu-Gi-Oh Api
         </div>
+        <!--/titolo-->
     </header>
 </template>
 
