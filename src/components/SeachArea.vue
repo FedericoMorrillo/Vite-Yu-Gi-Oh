@@ -1,5 +1,21 @@
 <script>
+import axios from 'axios';
 export default {
+    data() {
+        return {
+            selectedArchetype: "",
+
+            archetypes: [],
+            apiarchURL: "https://db.ygoprodeck.com/api/v7/archetypes.php",
+        };
+
+    },
+    created() {
+        axios.get(this.apiarchURL).then((response) => {
+            this.archetypes = response.data;
+            console.log(response.data)
+        });
+    }
 }
 </script>
 
@@ -7,8 +23,11 @@ export default {
     <!--contenitore-->
     <nav class="container">
         <!--barra di selezione-->
-        <select class="search-bar" id="">
-            <option value=""></option>
+        <select v-model="selectedArchetype" class="search-bar">
+            <option value="">All</option>
+            <option v-for="archetype in archetypes" :value="archetype.archetype_name">
+                {{ archetype.archetype_name }}
+            </option>
         </select>
         <!--/barra di selezione-->
     </nav>

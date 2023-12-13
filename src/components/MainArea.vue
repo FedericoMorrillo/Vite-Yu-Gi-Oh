@@ -2,11 +2,13 @@
 import axios from 'axios';
 import Cards from './Cards.vue';
 import { store } from '../../src/store';
+import SeachArea from './SeachArea.vue';
 export default {
-    components: { Cards },
+    components: { Cards, SeachArea },
     data() {
         return {
             store,
+
         }
     },
 
@@ -16,12 +18,14 @@ export default {
             store.cards = response.data.data;
             console.log(store.cards)
         });
-    }
+    },
 }
 </script>
 
 <template>
+    <SeachArea />
     <main class="container">
+
         <!--head con carte trovate-->
         <h4 class="list-head">
             Found {{ store.cards.length }} cards
@@ -30,10 +34,12 @@ export default {
 
         <!--contenitore delle cards-->
         <div class="cardlist flex wrap gap">
+
             <!--passiamo l' array al compomente figlio assegnando le proprietà per il props-->
             <Cards v-for="card in store.cards" :name="card.name" :type="card.type"
                 :cardImage="card.card_images[0].image_url" />
             <!--entriamo nell' array delle immagini e prendiamo l'url in posizione 0-->
+
         </div>
         <!--/contenitore delle cards-->
     </main>

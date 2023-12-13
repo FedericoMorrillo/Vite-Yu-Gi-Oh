@@ -6,7 +6,6 @@ import MainArea from './components/MainArea.vue';
 
 <template>
     <HeaderArea />
-    <SeachArea />
     <MainArea />
 </template>
 
