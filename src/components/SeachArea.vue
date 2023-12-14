@@ -3,6 +3,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            //proprietà di base della select che prenderà il valore di input selezionato
             selectedArchetype: "",
 
             archetypes: [],
@@ -12,24 +13,28 @@ export default {
     },
     created() {
         axios.get(this.apiarchURL).then((response) => {
-            this.archetypes = response.data;
-            console.log(response.data)
+            this.archetypes = response.data;//ci prendiamo l' array degli archetipi
         });
-    }
+    },
 }
 </script>
 
 <template>
     <!--contenitore-->
     <nav class="container">
+
         <!--barra di selezione-->
-        <select v-model="selectedArchetype" class="search-bar">
-            <option value="">All</option>
-            <option v-for="archetype in archetypes" :value="archetype.archetype_name">
+        <select v-model="selectedArchetype" class="search-bar"
+            @change="$emit('search', selectedArchetype)"><!--il secondo è il parametro-->
+            <!--selectedArchetype vuoto che al nuovo input viene aggiornato con il nuovo valore-->
+            <option value="">All</option><!--valore vuoto-->
+            <option v-for="  archetype   in   archetypes  " :value="archetype.archetype_name">
+                <!--valore preso dall' array-->
                 {{ archetype.archetype_name }}
             </option>
         </select>
         <!--/barra di selezione-->
+
     </nav>
     <!--/contenitore-->
 </template>

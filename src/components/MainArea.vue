@@ -8,8 +8,9 @@ export default {
     data() {
         return {
             store,
+            targetArchetype: '' //volevo inserire selectedArchetype ma lo ritenevo più opportuno così da non confondersi con il valore in searcharea
+        }                         //è semplicemente una proprietà utilizzata per salvarci dentro il valore dell' archetipo potendolo utilizzare  nel mainArea semplicemente come se fosse una variabile.
 
-        }
     },
 
     //prendiamo con axios l' array dall' api
@@ -19,16 +20,34 @@ export default {
             console.log(store.cards)
         });
     },
+    computed: {
+        filteredCards() {
+            if (!this.targetArchetype) {
+                return this.store.cards; //se non ci sono archetipi riporta tutte le carte
+            }
+            return this.store.cards.filter(card => card.archetype === this.targetArchetype);
+        },
+    },
+    methods: {
+        filterArchetype(archetype) {
+            this.targetArchetype = archetype;
+        },
+    },
+
 }
 </script>
 
 <template>
-    <SeachArea />
+    <SeachArea @search="filterArchetype" />
     <main class="container">
 
         <!--head con carte trovate-->
-        <h4 class="list-head">
-            Found {{ store.cards.length }} cards
+        <h4 class="list-head" v-show="filteredCards.length > 0"><!--condizione1-->
+            Found {{ filteredCards.length }} cards
+        </h4>
+
+        <h4 class="list-head" v-show="filteredCards.length === 0"><!--condizione2-->
+            No cards found
         </h4>
         <!--/head con carte trovate-->
 
@@ -36,7 +55,7 @@ export default {
         <div class="cardlist flex wrap gap">
 
             <!--passiamo l' array al compomente figlio assegnando le proprietà per il props-->
-            <Cards v-for="card in store.cards" :name="card.name" :type="card.type"
+            <Cards v-for="card in filteredCards" :name="card.name" :type="card.type"
                 :cardImage="card.card_images[0].image_url" />
             <!--entriamo nell' array delle immagini e prendiamo l'url in posizione 0-->
 
